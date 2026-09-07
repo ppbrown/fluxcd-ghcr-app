@@ -23,3 +23,10 @@ The piece that actually links this repo into the live cluster
 lives separately in
 `fluxcd-test/apps`, following the existing `prod/helmbased/` pattern
 there
+
+## Requirements
+
+- `image-reflector-controller` + `image-automation-controller` installed in cluster
+  (`flux bootstrap ... --components-extra=image-reflector-controller,image-automation-controller`)
+- `flux-system` deploy key set to write-enabled on this repo (GitHub)
+- `ghcr.io/ppbrown/ghcr-test` package stays public (no pull secret configured)
