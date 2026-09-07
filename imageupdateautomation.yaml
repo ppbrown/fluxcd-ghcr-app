@@ -1,7 +1,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageUpdateAutomation
 metadata:
-  name: ghcr-test
+  name: ghcr-app
   namespace: flux-system
 spec:
   interval: 5m0s
@@ -17,7 +17,7 @@ spec:
         email: fluxcdbot@users.noreply.github.com
         name: fluxcdbot
       messageTemplate: |
-        Auto-update ghcr-test image tag
+        Auto-update ghcr-app image tag
 
         {{range .Updated.Images}}{{println .}}{{end}}
     push:
