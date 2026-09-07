@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ghcr-test
+  namespace: ghcr-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ghcr-test
+  template:
+    metadata:
+      labels:
+        app: ghcr-test
+    spec:
+      containers:
+        - name: ghcr-test
+          image: ghcr.io/ppbrown/ghcr-test:11 # {"$imagepolicy": "flux-system:ghcr-test"}
+          ports:
+            - containerPort: 8080

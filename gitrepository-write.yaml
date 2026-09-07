@@ -1,0 +1,12 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: fluxcd-ghcr-app-write
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  url: ssh://git@github.com/ppbrown/fluxcd-ghcr-app
+  ref:
+    branch: main
+  secretRef:
+    name: flux-system
