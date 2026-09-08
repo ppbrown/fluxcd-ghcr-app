@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m0s
-  url: ssh://git@github.com/ppbrown/fluxcd-ghcr-app
+  url: github.com/ppbrown/fluxcd-ghcr-app
   ref:
     branch: main
   secretRef:
