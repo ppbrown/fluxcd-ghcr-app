@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: ghcr-app
   namespace: ghcr-app
+  labels:
+    app: ghcp-app
 spec:
   replicas: 1
   selector:
@@ -15,7 +17,7 @@ spec:
     spec:
       containers:
         - name: ghcr-app
-          image: ghcr.io/ppbrown/ghcr-test:11 # {"$imagepolicy": "flux-system:ghcr-app"}
+          image: ghcr.io/ppbrown/ghcr-test:11
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
