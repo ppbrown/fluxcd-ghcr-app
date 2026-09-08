@@ -4,7 +4,3 @@ resources:
   - namespace.yaml
   - deployment.yaml
   - service.yaml
-  - imagerepository.yaml
-  - imagepolicy.yaml
-  - gitrepository-write.yaml
-  - imageupdateautomation.yaml
