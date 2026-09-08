@@ -1,7 +1,13 @@
+---
+# This file is redundant
+# There already needs to be a source repo def to reach this,
+# so we dont need to create it again!
+# Just keeping this here for reference in case you want
+# to use it elsewhere maybe
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: fluxcd-ghcr-app-write
+  name: fluxcd-ghcr-app
   namespace: flux-system
 spec:
   interval: 1m0s

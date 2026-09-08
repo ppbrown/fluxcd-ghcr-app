@@ -7,7 +7,7 @@ spec:
   interval: 5m0s
   sourceRef:
     kind: GitRepository
-    name: fluxcd-ghcr-app-write
+    name: fluxcd-ghcr-app
   git:
     checkout:
       ref:

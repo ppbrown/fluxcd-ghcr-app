@@ -6,5 +6,4 @@ resources:
   - service.yaml
   - imagerepository.yaml
   - imagepolicy.yaml
-  - gitrepository-write.yaml
   - imageupdateautomation.yaml
