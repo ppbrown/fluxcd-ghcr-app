@@ -3,7 +3,9 @@
 # There already needs to be a source repo def to reach this,
 # so we dont need to create it again!
 # Just keeping this here for reference in case you want
-# to use it elsewhere maybe
+# to use it elsewhere. For example, in the flux
+# definitions where you pull in this repo
+#
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
