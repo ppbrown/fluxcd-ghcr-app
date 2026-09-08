@@ -19,7 +19,7 @@ spec:
       messageTemplate: |
         Auto-update ghcr-app image tag
 
-        {{range .Updated.Images}}{{println .}}{{end}}
+        {{range .Changed.Objects}}{{println .}}{{end}}
     push:
       branch: main
   update:
