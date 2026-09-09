@@ -4,6 +4,3 @@ resources:
   - namespace.yaml
   - deployment.yaml
   - service.yaml
-  - imagerepository.yaml
-  - imagepolicy.yaml
-  - imageupdateautomation.yaml

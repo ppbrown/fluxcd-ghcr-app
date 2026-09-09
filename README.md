@@ -3,30 +3,25 @@ Flux wrapper for autodeploy of my ghcr-test app
 
 ## How it works
 
-This repo is self-contained: it holds both the workload (`namespace.yaml`,
-`deployment.yaml`, `service.yaml`) and the Flux image-automation CRs that keep
-it updated:
+This repo is read-only from Flux's perspective and is a complete, self-contained
+app definition: `namespace.yaml`, `deployment.yaml`, `service.yaml`, tied
+together by `kustomization.yaml`. It's fully functional on its own: you can
+point a `flux create kustomization ... --source=GitRepository/...` directly at
+this repo and it will deploy and run
 
-- `imagerepository.yaml` scans `ghcr.io/ppbrown/ghcr-test` for tags every 5m.
-- `imagepolicy.yaml` picks the highest numeric tag (filters out non-numeric
-  tags like `prod`), since ghcr-test's tags are plain incrementing integers,
-  not semver.
-- `gitrepository-write.yaml` + `imageupdateautomation.yaml` write the new tag
-  back into `deployment.yaml`'s image line (the `$imagepolicy` marker comment
-  on that line is what gets rewritten) and push a commit to this repo's
-  `main` branch. It reuses the existing `flux-system` deploy key/secret,
-  which has also been granted write access to this repo on GitHub.
-- `kustomization.yaml` ties it all together for whatever toolkit
-  `Kustomization` points at this repo.
+In a production situation, you would pull it in with an override like the following:
 
-The piece that actually links this repo into the live cluster 
-lives separately in
-`fluxcd-test/apps`, following the existing `prod/helmbased/` pattern
-there
 
-## Requirements
 
-- `image-reflector-controller` + `image-automation-controller` installed in cluster
-  (`flux bootstrap ... --components-extra=image-reflector-controller,image-automation-controller`)
-- `flux-system` deploy key set to write-enabled on this repo (GitHub)
-- `ghcr.io/ppbrown/ghcr-test` package stays public (no pull secret configured)
+```yaml
+spec:
+  .....
+  sourceRef:
+    kind: GitRepository
+    name: fluxcd-ghcr-app
+  images:
+    - name: ghcr.io/ppbrown/ghcr-test
+      newTag: "14" # {"$imagepolicy": "flux-system:ghcr-app:tag"}
+```
+
+The $imagepolicy magic will automatically write updates to change "14" as needed

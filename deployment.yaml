@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: ghcr-app
-          image: ghcr.io/ppbrown/ghcr-test:14 # {"$imagepolicy": "flux-system:ghcr-app"}
+          image: ghcr.io/ppbrown/ghcr-test:14
           ports:
             - containerPort: 8080
