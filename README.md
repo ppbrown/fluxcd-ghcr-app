@@ -9,7 +9,7 @@ together by `kustomization.yaml`. It's fully functional on its own: you can
 point a `flux create kustomization ... --source=GitRepository/...` directly at
 this repo and it will deploy and run
 
-In a production situation, you would pull it in with an override like the following:
+In a production situation, you would pull it in with an override vaguely like the following:
 
 
 
@@ -24,4 +24,10 @@ spec:
       newTag: "14" # {"$imagepolicy": "flux-system:ghcr-app:tag"}
 ```
 
-The $imagepolicy magic will automatically write updates to change "14" as needed
+The $imagepolicy magic can automatically write updates to change "14" as needed, although you would probably want a better
+placeholder.
+
+For the full flux auto-loader code, see
+
+https://github.com/ppbrown/fluxcd-starterkit/blob/master/prod/ghcr-app/imagepolicy.yaml
+
