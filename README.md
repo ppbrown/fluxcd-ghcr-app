@@ -1,6 +1,8 @@
 # fluxcd-ghcr-app
 
-Flux wrapper for deploying of my ghcr-test app
+FluxCD middle layer test wrapper for deploying my ghcr-test app. This is the middle link in a proper GitOps chain.
+It sits between AppDev delivered container image, and the real cluster IaC.
+It comprises the general-purpose application definitions, that would then get customized for specific environments such as prod or dev.
 
 ## How it works
 
@@ -10,11 +12,11 @@ It is a complete, self-contained app definition:
 `namespace.yaml`, `deployment.yaml`, `service.yaml`, tied
 together by `kustomization.yaml`. 
 
-It's fully functional on its own: you can
-point a `flux create kustomization ... --source=GitRepository/...` directly at
+It's fully functional on its own: you *can* point a 
+`flux create kustomization ... --source=GitRepository/...` directly at
 this repo and it will deploy and run something.
 
-HOWEVER. It uses a hardcoded tag.
+HOWEVER. It uses a placeholder hardcoded tag.
 
 In a production situation, you would probably want to use the latest build. This can be done 
 by pulling this in with an override vaguely like the following:
@@ -33,7 +35,7 @@ spec:
 The $imagepolicy magic can automatically write updates to change "14" as needed, although you would probably want a better
 placeholder.
 
-For the full flux auto-loader code that does this, see
+For the full Enterprise-grade flux auto-updating loader code that does this, see
 
 https://github.com/ppbrown/fluxcd-starterkit/blob/master/prod/ghcr-app/imagepolicy.yaml
 
