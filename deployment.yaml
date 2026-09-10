@@ -18,3 +18,6 @@ spec:
           image: ghcr.io/ppbrown/ghcr-test:14
           ports:
             - containerPort: 8080
+          env:
+            - name: CUSTOM_CONTENT
+              value: "from ppbrown fluxcd-ghcr-app"
