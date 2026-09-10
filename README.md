@@ -1,17 +1,23 @@
 # fluxcd-ghcr-app
-Flux wrapper for autodeploy of my ghcr-test app
+
+Flux wrapper for deploying of my ghcr-test app
 
 ## How it works
 
-This repo is read-only from Flux's perspective and is a complete, self-contained
-app definition: `namespace.yaml`, `deployment.yaml`, `service.yaml`, tied
-together by `kustomization.yaml`. It's fully functional on its own: you can
+This repo is read-only from Flux's github-access perspective.
+It is a complete, self-contained app definition: 
+
+`namespace.yaml`, `deployment.yaml`, `service.yaml`, tied
+together by `kustomization.yaml`. 
+
+It's fully functional on its own: you can
 point a `flux create kustomization ... --source=GitRepository/...` directly at
-this repo and it will deploy and run
+this repo and it will deploy and run something.
 
-In a production situation, you would pull it in with an override vaguely like the following:
+HOWEVER. It uses a hardcoded tag.
 
-
+In a production situation, you would probably want to use the latest build. This can be done 
+by pulling this in with an override vaguely like the following:
 
 ```yaml
 spec:
@@ -27,7 +33,7 @@ spec:
 The $imagepolicy magic can automatically write updates to change "14" as needed, although you would probably want a better
 placeholder.
 
-For the full flux auto-loader code, see
+For the full flux auto-loader code that does this, see
 
 https://github.com/ppbrown/fluxcd-starterkit/blob/master/prod/ghcr-app/imagepolicy.yaml
 
