@@ -27,7 +27,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: fluxcd-ghcr-app
-  images:
+  imagesjj
     - name: ghcr.io/ppbrown/ghcr-test
       newTag: "14" # {"$imagepolicy": "flux-system:ghcr-app:tag"}
 ```
@@ -39,3 +39,10 @@ For the full Enterprise-grade flux auto-updating loader code that does this, see
 
 https://github.com/ppbrown/fluxcd-starterkit/blob/master/prod/ghcr-app/imagepolicy.yaml
 
+## Why a middle layer?
+
+Why not just put the application IaC code all in at the flux repo layer? I would say two primary reasons:
+
+1. Cleaner modularity. As your app setup gets more complex, it can be nice to have it seperate from the top level Flux control layers.
+
+2. Cleaner git logs. If you have auto-pull of newer versions of apps, that goes into the repo. Which gets a commit log by the flux bot. Which then makes kind of a mess if you want to do a simple review of changes for a particular app's config.  If this is your primary goal, you might pull in all of your "middle layer" definitions into a single repo if you wanted. But single-repo-per-app makes it easier to do open source modular sharing as well.
